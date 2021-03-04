@@ -313,7 +313,6 @@ if __name__ == '__main__':
     val2 = np.zeros((10,100))
     for m in range(1,10):
       for f in range(1,100):
-        #val[m][f] = func(inv_norm(i,f),m,i)
         val[m][f] = func(inv_norm(i,f/100.0),m,i)
       plt.plot(inv_norm(i,np.linspace(0.01,1,99)),val[m,1:])
     #plt.plot(val2)
@@ -326,31 +325,3 @@ if __name__ == '__main__':
       plt.clf()
     """
 
-
-"""
-#//1〜10種類ある予測関数番号をもらうと計算をする関数を作ります
-double func2(double factor,double mental, int func_num){
-  if func_num == 0:
-    ret= 2.0/(1.0+np.exp((factor/80.0-0.15-mental/50.0)*30.0))-1.0#
-  if func_num == 1:
-    ret= (pow((factor+1.0),(11.0-mental))-1.0)/(pow(2.0,(11.0-mental))-1.0)*2.0-1.0#
-  if func_num == 2:
-    ret= -np.exp(-factor*factor/((11.0-mental)/500.0))+np.exp(-(factor-0.5)*(factor-0.5)/(mental/300.0))#
-  if func_num == 3:
-    ret= -np.exp(-factor*factor/((11.0-mental)/500.0))+np.exp(-(factor-0.5)*(factor-0.5)/(mental/300.0))#
-  if func_num == 4:
-    ret= (pow(2.0,(11.0-mental)*0.8)/(pow(2.0,(11.0-mental)*0.8)-1.0)/pow((factor/80.0+1.0),(0.8*(11.0-mental)))-1.0/(pow(2.0,(0.8*(11.0-mental)))-1))*2.0-1.0#
-  if func_num == 5:
-    ret= np.exp(-(factor-0.2)*(factor-0.2)/(mental/700.0))-np.exp(-(factor-0.7)*(factor-0.7)/((11.0-mental)/300.0))#
-  if func_num == 6:
-    ret= np.exp(-factor*factor/(mental/600.0))-np.exp(-(factor-0.5)*(factor-0.5)/((11.0-mental)/200.0))#
-  if func_num == 7:
-    ret= 2.0/(1.0+np.exp(-35.0*(factor/240.0-0.2+mental/50.0)))-1.0#
-  if func_num == 8:
-    ret= (pow((factor/80.0+1.0),(9.0*(11.0-mental)))-1.0)/(pow(2.0,(9.0*(11.0-mental)))-1.0)#
-  if func_num == 9:
-    ret= 1.0/(1.0+np.exp(50.0*(factor/80.0-0.1-mental/50.0)))-1.0#
-  if func_num == 10:
-    ret= 0.2/(1.0+np.exp(10.0*mental))-0.1##//心的状態弾性
-}
-"""
