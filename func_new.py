@@ -304,9 +304,6 @@ def func(factor, mental, func_num):
     c = 0.1 * (3.0 - 0.2 * (11.0 - mental))
     ret = sig(factor,a,b,c)
 
-  print(func_num,"func_new/a,b,c",a,b,c)
-  if c==0:
-    input()
   return ret
 
 if __name__ == '__main__':
