@@ -25,12 +25,12 @@ def inv_norm(num, val):
 
 def sig(factor,a,b,c):
   ret=0.0
-  ret = 1.0/(1.0+np.exp(a*(b*factor-c)))
+  ret = 1.0/(1.0+np.exp(a*(b*factor-c))+10e-6)
   return ret
 
 def gauss(factor,a,b,c):
   ret=0.0
-  ret = np.exp(-1.0*np.power((a*factor-b),2.0)/c)
+  ret = np.exp(-1.0*np.power((a*factor-b),2.0)/(c+10e-6))
   return ret
 
 def inv_down(factor,a,b):
@@ -39,7 +39,7 @@ def inv_down(factor,a,b):
   B = A - 1.0
   C = b * factor + 1
   D = np.power(C,a)
-  ret = A/(B*D) - 1.0/B
+  ret = A/(B*D+10e-6) - 1.0/(B+10e-6)
   return ret
 
 def inv_up(factor,a,b):
@@ -48,7 +48,7 @@ def inv_up(factor,a,b):
   B = A - 1.0
   C = b * factor + 1
   D = np.power(C,a)
-  ret = (D-1.0)/B
+  ret = (D-1.0)/(B+10-6)
   return ret
 
 func_name_str = ["time of trial hap","time of trial sup", "time of trial ang", "time of trial sad",
@@ -66,6 +66,9 @@ func_name_str = ["time of trial hap","time of trial sup", "time of trial ang", "
 #//1〜10種類ある予測関数番号をもらうと計算をする関数を作ります
 def func(factor, mental, func_num):
   ### time of trial ##
+  a=None
+  b=None
+  c=None
   if func_num == 0:
     #time of trial happy
     a = 2.0*(mental+3.0)
@@ -301,6 +304,9 @@ def func(factor, mental, func_num):
     c = 0.1 * (3.0 - 0.2 * (11.0 - mental))
     ret = sig(factor,a,b,c)
 
+  print(func_num,"func_new/a,b,c",a,b,c)
+  if c==0:
+    input()
   return ret
 
 if __name__ == '__main__':
